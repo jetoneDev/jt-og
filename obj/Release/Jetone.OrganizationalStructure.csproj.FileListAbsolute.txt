@@ -1,0 +1,6 @@
+D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\bin\Release\Jetone.OrganizationalStructure.dll.config
+D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\bin\Release\Jetone.OrganizationalStructure.XML
+D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\bin\Release\Jetone.OrganizationalStructure.dll
+D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\bin\Release\Jetone.OrganizationalStructure.pdb
+D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\obj\Release\Jetone.OrganizationalStructure.dll
+D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\obj\Release\Jetone.OrganizationalStructure.pdb

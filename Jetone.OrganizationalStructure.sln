@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jetone.OrganizationalStructure", "Jetone.OrganizationalStructure.csproj", "{BE2EC64A-3D59-45A6-84AF-D91A24CBDC6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "..\TestConsole\TestConsole.csproj", "{A24A9201-209A-49D8-86DA-FC8C382D4E09}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BE2EC64A-3D59-45A6-84AF-D91A24CBDC6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE2EC64A-3D59-45A6-84AF-D91A24CBDC6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE2EC64A-3D59-45A6-84AF-D91A24CBDC6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE2EC64A-3D59-45A6-84AF-D91A24CBDC6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A24A9201-209A-49D8-86DA-FC8C382D4E09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A24A9201-209A-49D8-86DA-FC8C382D4E09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A24A9201-209A-49D8-86DA-FC8C382D4E09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A24A9201-209A-49D8-86DA-FC8C382D4E09}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

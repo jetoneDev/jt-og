@@ -1,0 +1,7 @@
+D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\bin\Debug\Jetone.OrganizationalStructure.dll.config
+D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\bin\Debug\Jetone.OrganizationalStructure.dll
+D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\bin\Debug\Jetone.OrganizationalStructure.pdb
+D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\bin\Debug\AppHelpers.dll
+D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\obj\Debug\Jetone.OrganizationalStructure.dll
+D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\obj\Debug\Jetone.OrganizationalStructure.pdb
+D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\obj\Debug\Jetone.OrganizationalStructure.csprojResolveAssemblyReference.cache
