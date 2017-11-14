@@ -2,6 +2,17 @@
 
 namespace Jetone.OrganizationalStructure.Model
 {
+
+    public class RoleUrlDetail
+    {
+        public int Id { get; set; }
+        public string Menu { get; set; }
+        public string Url { get; set; }
+        public int ParentMenuId { get; set; }
+        public string OperateAuth { get; set; }
+    }
+
+
     public class SystemInfo
     {
         public int SystemId { get; set; }
@@ -54,8 +65,12 @@ namespace Jetone.OrganizationalStructure.Model
     {
         public string CompanyName { get; set; }
     }
+
+
+
     public class UpdateUserInfoData
     {
+        public int UserId { get; set; }
         public string UserName { get; set; }
         public string Tel { get; set; }
         public string Password { get; set; }
@@ -78,6 +93,7 @@ namespace Jetone.OrganizationalStructure.Model
     }
     public class CreateUserData
     {
+        public int RoleId { get; set; }
         public string UserName { get; set; }
         public string Tel { get; set; }
         public string Password { get; set; }
@@ -88,16 +104,19 @@ namespace Jetone.OrganizationalStructure.Model
         public string CompanyName { get; set; }
         public string DepartmentName { get; set; }
         public string UserName { get; set; }
-        public string Tel { get; set; }
         public string Password { get; set; }
         public string RoleName { get; set; }
         public int SystemId { get; set; }
+        public int ParentCompanyId { get; set; }
         public List<UrlData> Url { get; set; } = new List<UrlData>();
     }
     public class UrlData
     {
         public string Url { get; set; }
-        public string Type { get; set; }
+        public string ParentMenuId { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public int OrderNum { get; set; }
     }
     internal class RoleDetail
     {
@@ -120,6 +139,7 @@ namespace Jetone.OrganizationalStructure.Model
     public class RoleData
     {
         public string RoleName { get; set; }
+        public string Decription { get; set; }
         public int RoleId { get; set; }
         public int SystemId { get; set; }
         public List<string> UrlDetail { get; set; } = new List<string>();

@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="Model1TargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="SystemSet" EntityType="Model1.System" />
+          <EntitySet Name="DepartmentSet" EntityType="Model1.Department" />
+          <EntitySet Name="ResourceSet" EntityType="Model1.Resource" />
+          <EntitySet Name="AccountSet" EntityType="Model1.Account" />
+          <EntitySet Name="CompanySet" EntityType="Model1.Company" />
+          <EntitySet Name="MenuUrlSet" EntityType="Model1.MenuUrl" />
+          <EntitySet Name="GroupMemberSet" EntityType="Model1.GroupMember" />
+          <AssociationSet Name="System组" Association="Model1.System组">
+            <End Role="System" EntitySet="SystemSet" />
+            <End Role="组" EntitySet="ResourceSet" />
+          </AssociationSet>
+          <AssociationSet Name="公司组织架构" Association="Model1.公司组织架构">
+            <End Role="公司" EntitySet="CompanySet" />
+            <End Role="组织架构" EntitySet="DepartmentSet" />
+          </AssociationSet>
+          <AssociationSet Name="公司组" Association="Model1.公司组">
+            <End Role="公司" EntitySet="CompanySet" />
+            <End Role="组" EntitySet="ResourceSet" />
+          </AssociationSet>
+          <AssociationSet Name="组部门人员" Association="Model1.组部门人员">
+            <End Role="组" EntitySet="ResourceSet" />
+            <End Role="人组关系表" EntitySet="GroupMemberSet" />
+          </AssociationSet>
+          <AssociationSet Name="公司人" Association="Model1.公司人">
+            <End Role="公司" EntitySet="CompanySet" />
+            <End Role="人" EntitySet="AccountSet" />
+          </AssociationSet>
+          <AssociationSet Name="人部门人员" Association="Model1.人部门人员">
+            <End Role="人" EntitySet="AccountSet" />
+            <End Role="人组关系表" EntitySet="GroupMemberSet" />
+          </AssociationSet>
+          <EntitySet Name="AuthSet" EntityType="Model1.Auth" />
+          <AssociationSet Name="SystemOperationAuthority" Association="Model1.SystemOperationAuthority">
+            <End Role="System" EntitySet="SystemSet" />
+            <End Role="OperationAuthority" EntitySet="AuthSet" />
+          </AssociationSet>
+          <EntitySet Name="SysCompanySet" EntityType="Model1.SysCompany" />
+          <AssociationSet Name="CompanySysCompany" Association="Model1.CompanySysCompany">
+            <End Role="Company" EntitySet="CompanySet" />
+            <End Role="SysCompany" EntitySet="SysCompanySet" />
+          </AssociationSet>
+          <AssociationSet Name="SystemSysCompany" Association="Model1.SystemSysCompany">
+            <End Role="System" EntitySet="SystemSet" />
+            <End Role="SysCompany" EntitySet="SysCompanySet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="System">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="组" Relationship="Model1.System组" FromRole="System" ToRole="组" />
+          <NavigationProperty Name="OperationAuthority" Relationship="Model1.SystemOperationAuthority" FromRole="System" ToRole="OperationAuthority" />
+          <NavigationProperty Name="SysCompany" Relationship="Model1.SystemSysCompany" FromRole="System" ToRole="SysCompany" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="ParentId" Type="String" Nullable="false" />
+          <NavigationProperty Name="公司" Relationship="Model1.公司组织架构" FromRole="组织架构" ToRole="公司" />
+        </EntityType>
+        <EntityType Name="Resource">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="ResourceType" Type="String" Nullable="false" />
+          <Property Name="SystemId" Type="String" Nullable="false" />
+          <NavigationProperty Name="System" Relationship="Model1.System组" FromRole="组" ToRole="System" />
+          <NavigationProperty Name="公司" Relationship="Model1.公司组" FromRole="组" ToRole="公司" />
+          <NavigationProperty Name="部门人员" Relationship="Model1.组部门人员" FromRole="组" ToRole="人组关系表" />
+          <Property Name="Name" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Tel" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <NavigationProperty Name="公司" Relationship="Model1.公司人" FromRole="人" ToRole="公司" />
+          <NavigationProperty Name="部门人员" Relationship="Model1.人部门人员" FromRole="人" ToRole="人组关系表" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="组织架构" Relationship="Model1.公司组织架构" FromRole="公司" ToRole="组织架构" />
+          <NavigationProperty Name="组" Relationship="Model1.公司组" FromRole="公司" ToRole="组" />
+          <NavigationProperty Name="人" Relationship="Model1.公司人" FromRole="公司" ToRole="人" />
+          <Property Name="ParentCompanyId" Type="String" Nullable="false" />
+          <NavigationProperty Name="SysCompany" Relationship="Model1.CompanySysCompany" FromRole="Company" ToRole="SysCompany" />
+        </EntityType>
+        <EntityType Name="MenuUrl">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Url" Type="String" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="ParentResourceId" Type="String" Nullable="false" />
+          <Property Name="Decription" Type="String" Nullable="false" />
+          <Property Name="OrderNum" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResourceGroupId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="组" Relationship="Model1.组部门人员" FromRole="人组关系表" ToRole="组" />
+          <NavigationProperty Name="人" Relationship="Model1.人部门人员" FromRole="人组关系表" ToRole="人" />
+        </EntityType>
+        <Association Name="System组">
+          <End Type="Model1.System" Role="System" Multiplicity="1" />
+          <End Type="Model1.Resource" Role="组" Multiplicity="*" />
+        </Association>
+        <Association Name="公司组织架构">
+          <End Type="Model1.Company" Role="公司" Multiplicity="1" />
+          <End Type="Model1.Department" Role="组织架构" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="公司">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="组织架构">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="公司组">
+          <End Type="Model1.Company" Role="公司" Multiplicity="1" />
+          <End Type="Model1.Resource" Role="组" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="公司">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="组">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="组部门人员">
+          <End Type="Model1.Resource" Role="组" Multiplicity="1" />
+          <End Type="Model1.GroupMember" Role="人组关系表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="组">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="人组关系表">
+              <PropertyRef Name="ResourceGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="公司人">
+          <End Type="Model1.Company" Role="公司" Multiplicity="1" />
+          <End Type="Model1.Account" Role="人" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="公司">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="人">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="人部门人员">
+          <End Type="Model1.Account" Role="人" Multiplicity="1" />
+          <End Type="Model1.GroupMember" Role="人组关系表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="人">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="人组关系表">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Auth">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="System" Relationship="Model1.SystemOperationAuthority" FromRole="OperationAuthority" ToRole="System" />
+          <Property Name="SystemId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="SystemOperationAuthority">
+          <End Type="Model1.System" Role="System" Multiplicity="1" />
+          <End Type="Model1.Auth" Role="OperationAuthority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="System">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OperationAuthority">
+              <PropertyRef Name="SystemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SysCompany">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Company" Relationship="Model1.CompanySysCompany" FromRole="SysCompany" ToRole="Company" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="System" Relationship="Model1.SystemSysCompany" FromRole="SysCompany" ToRole="System" />
+          <Property Name="SystemId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="CompanySysCompany">
+          <End Type="Model1.Company" Role="Company" Multiplicity="1" />
+          <End Type="Model1.SysCompany" Role="SysCompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysCompany">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SystemSysCompany">
+          <End Type="Model1.System" Role="System" Multiplicity="1" />
+          <End Type="Model1.SysCompany" Role="SysCompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="System">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SysCompany">
+              <PropertyRef Name="SystemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model1" />
+        <Alias Key="Target" Value="Model1.Store" />
+        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1TargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

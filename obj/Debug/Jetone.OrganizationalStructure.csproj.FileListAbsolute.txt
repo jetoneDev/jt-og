@@ -5,3 +5,11 @@ D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\bin\Debug\
 D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\obj\Debug\Jetone.OrganizationalStructure.dll
 D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\obj\Debug\Jetone.OrganizationalStructure.pdb
 D:\Jetone\Code\OrganizationalStructure\Jetone.OrganizationalStructure\obj\Debug\Jetone.OrganizationalStructure.csprojResolveAssemblyReference.cache
+D:\Jetone\Code\Git_Organizational\jt-og\bin\Debug\Jetone.OrganizationalStructure.dll.config
+D:\Jetone\Code\Git_Organizational\jt-og\bin\Debug\Jetone.OrganizationalStructure.dll
+D:\Jetone\Code\Git_Organizational\jt-og\bin\Debug\Jetone.OrganizationalStructure.pdb
+D:\Jetone\Code\Git_Organizational\jt-og\bin\Debug\AppHelpers.dll
+D:\Jetone\Code\Git_Organizational\jt-og\bin\Debug\AppHelpers.xml
+D:\Jetone\Code\Git_Organizational\jt-og\obj\Debug\Jetone.OrganizationalStructure.dll
+D:\Jetone\Code\Git_Organizational\jt-og\obj\Debug\Jetone.OrganizationalStructure.pdb
+D:\Jetone\Code\Git_Organizational\jt-og\obj\Debug\Jetone.OrganizationalStructure.csprojResolveAssemblyReference.cache

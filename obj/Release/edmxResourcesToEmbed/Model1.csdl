@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="SystemSet" EntityType="Model1.System" />
+    <EntitySet Name="DepartmentSet" EntityType="Model1.Department" />
+    <EntitySet Name="ResourceGroupSet" EntityType="Model1.ResourceGroup" />
+    <EntitySet Name="UserSet" EntityType="Model1.User" />
+    <EntitySet Name="CompanySet" EntityType="Model1.Company" />
+    <EntitySet Name="MenuUrlSet" EntityType="Model1.MenuUrl" />
+    <EntitySet Name="GroupMemberSet" EntityType="Model1.GroupMember" />
+    <AssociationSet Name="System组" Association="Model1.System组">
+      <End Role="System" EntitySet="SystemSet" />
+      <End Role="组" EntitySet="ResourceGroupSet" />
+    </AssociationSet>
+    <AssociationSet Name="公司组织架构" Association="Model1.公司组织架构">
+      <End Role="公司" EntitySet="CompanySet" />
+      <End Role="组织架构" EntitySet="DepartmentSet" />
+    </AssociationSet>
+    <AssociationSet Name="公司组" Association="Model1.公司组">
+      <End Role="公司" EntitySet="CompanySet" />
+      <End Role="组" EntitySet="ResourceGroupSet" />
+    </AssociationSet>
+    <AssociationSet Name="组部门人员" Association="Model1.组部门人员">
+      <End Role="组" EntitySet="ResourceGroupSet" />
+      <End Role="人组关系表" EntitySet="GroupMemberSet" />
+    </AssociationSet>
+    <AssociationSet Name="公司人" Association="Model1.公司人">
+      <End Role="公司" EntitySet="CompanySet" />
+      <End Role="人" EntitySet="UserSet" />
+    </AssociationSet>
+    <AssociationSet Name="人部门人员" Association="Model1.人部门人员">
+      <End Role="人" EntitySet="UserSet" />
+      <End Role="人组关系表" EntitySet="GroupMemberSet" />
+    </AssociationSet>
+    <EntitySet Name="ResourceGroupDetailSet" EntityType="Model1.ResourceGroupDetail" />
+    <EntitySet Name="OperationAuthoritySet" EntityType="Model1.OperationAuthority" />
+    <AssociationSet Name="SystemOperationAuthority" Association="Model1.SystemOperationAuthority">
+      <End Role="System" EntitySet="SystemSet" />
+      <End Role="OperationAuthority" EntitySet="OperationAuthoritySet" />
+    </AssociationSet>
+    <AssociationSet Name="ResourceGroupGroupOperate" Association="Model1.ResourceGroupGroupOperate">
+      <End Role="ResourceGroup" EntitySet="ResourceGroupSet" />
+      <End Role="GroupOperate" EntitySet="ResourceGroupDetailSet" />
+    </AssociationSet>
+    <AssociationSet Name="RoleResourceDetailGroupOperate" Association="Model1.RoleResourceDetailGroupOperate">
+      <End Role="RoleResourceDetail" EntitySet="MenuUrlSet" />
+      <End Role="GroupOperate" EntitySet="ResourceGroupDetailSet" />
+    </AssociationSet>
+    <AssociationSet Name="OperationAuthorityGroupOperate" Association="Model1.OperationAuthorityGroupOperate">
+      <End Role="OperationAuthority" EntitySet="OperationAuthoritySet" />
+      <End Role="GroupOperate" EntitySet="ResourceGroupDetailSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="System">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <NavigationProperty Name="组" Relationship="Model1.System组" FromRole="System" ToRole="组" />
+    <NavigationProperty Name="OperationAuthority" Relationship="Model1.SystemOperationAuthority" FromRole="System" ToRole="OperationAuthority" />
+  </EntityType>
+  <EntityType Name="Department">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="CompanyId" Type="Int32" Nullable="false" />
+    <Property Name="ParentId" Type="String" Nullable="false" />
+    <NavigationProperty Name="公司" Relationship="Model1.公司组织架构" FromRole="组织架构" ToRole="公司" />
+  </EntityType>
+  <EntityType Name="ResourceGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyId" Type="Int32" Nullable="false" />
+    <Property Name="ResourceType" Type="String" Nullable="false" />
+    <Property Name="SystemId" Type="String" Nullable="false" />
+    <NavigationProperty Name="System" Relationship="Model1.System组" FromRole="组" ToRole="System" />
+    <NavigationProperty Name="公司" Relationship="Model1.公司组" FromRole="组" ToRole="公司" />
+    <NavigationProperty Name="部门人员" Relationship="Model1.组部门人员" FromRole="组" ToRole="人组关系表" />
+    <NavigationProperty Name="GroupOperate" Relationship="Model1.ResourceGroupGroupOperate" FromRole="ResourceGroup" ToRole="GroupOperate" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="Tel" Type="String" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" />
+    <NavigationProperty Name="公司" Relationship="Model1.公司人" FromRole="人" ToRole="公司" />
+    <NavigationProperty Name="部门人员" Relationship="Model1.人部门人员" FromRole="人" ToRole="人组关系表" />
+  </EntityType>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <NavigationProperty Name="组织架构" Relationship="Model1.公司组织架构" FromRole="公司" ToRole="组织架构" />
+    <NavigationProperty Name="组" Relationship="Model1.公司组" FromRole="公司" ToRole="组" />
+    <NavigationProperty Name="人" Relationship="Model1.公司人" FromRole="公司" ToRole="人" />
+    <Property Name="ParentCompanyId" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MenuUrl">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Url" Type="String" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <Property Name="ParentResourceId" Type="String" Nullable="false" />
+    <NavigationProperty Name="GroupOperate" Relationship="Model1.RoleResourceDetailGroupOperate" FromRole="RoleResourceDetail" ToRole="GroupOperate" />
+    <Property Name="Decription" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupMember">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResourceGroupId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="组" Relationship="Model1.组部门人员" FromRole="人组关系表" ToRole="组" />
+    <NavigationProperty Name="人" Relationship="Model1.人部门人员" FromRole="人组关系表" ToRole="人" />
+  </EntityType>
+  <Association Name="System组">
+    <End Type="Model1.System" Role="System" Multiplicity="1" />
+    <End Type="Model1.ResourceGroup" Role="组" Multiplicity="*" />
+  </Association>
+  <Association Name="公司组织架构">
+    <End Type="Model1.Company" Role="公司" Multiplicity="1" />
+    <End Type="Model1.Department" Role="组织架构" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="公司">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="组织架构">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="公司组">
+    <End Type="Model1.Company" Role="公司" Multiplicity="1" />
+    <End Type="Model1.ResourceGroup" Role="组" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="公司">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="组">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="组部门人员">
+    <End Type="Model1.ResourceGroup" Role="组" Multiplicity="1" />
+    <End Type="Model1.GroupMember" Role="人组关系表" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="组">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="人组关系表">
+        <PropertyRef Name="ResourceGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="公司人">
+    <End Type="Model1.Company" Role="公司" Multiplicity="1" />
+    <End Type="Model1.User" Role="人" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="公司">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="人">
+        <PropertyRef Name="CompanyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="人部门人员">
+    <End Type="Model1.User" Role="人" Multiplicity="1" />
+    <End Type="Model1.GroupMember" Role="人组关系表" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="人">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="人组关系表">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ResourceGroupDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="ResourceGroup" Relationship="Model1.ResourceGroupGroupOperate" FromRole="GroupOperate" ToRole="ResourceGroup" />
+    <Property Name="ResourceGroupId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="OperationAuthority" Relationship="Model1.OperationAuthorityGroupOperate" FromRole="GroupOperate" ToRole="OperationAuthority" />
+    <Property Name="OperationAuthorityId" Type="Int32" Nullable="false" />
+    <Property Name="MenuUrl" Type="String" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OperationAuthority">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" />
+    <NavigationProperty Name="System" Relationship="Model1.SystemOperationAuthority" FromRole="OperationAuthority" ToRole="System" />
+    <Property Name="SystemId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GroupOperate" Relationship="Model1.OperationAuthorityGroupOperate" FromRole="OperationAuthority" ToRole="GroupOperate" />
+  </EntityType>
+  <Association Name="SystemOperationAuthority">
+    <End Type="Model1.System" Role="System" Multiplicity="1" />
+    <End Type="Model1.OperationAuthority" Role="OperationAuthority" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="System">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OperationAuthority">
+        <PropertyRef Name="SystemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ResourceGroupGroupOperate">
+    <End Type="Model1.ResourceGroup" Role="ResourceGroup" Multiplicity="1" />
+    <End Type="Model1.ResourceGroupDetail" Role="GroupOperate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResourceGroup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupOperate">
+        <PropertyRef Name="ResourceGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RoleResourceDetailGroupOperate">
+    <End Type="Model1.MenuUrl" Role="RoleResourceDetail" Multiplicity="1" />
+    <End Type="Model1.ResourceGroupDetail" Role="GroupOperate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleResourceDetail">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupOperate">
+        <PropertyRef Name="RoleResourceDetailId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="OperationAuthorityGroupOperate">
+    <End Type="Model1.OperationAuthority" Role="OperationAuthority" Multiplicity="1" />
+    <End Type="Model1.ResourceGroupDetail" Role="GroupOperate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OperationAuthority">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupOperate">
+        <PropertyRef Name="OperationAuthorityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

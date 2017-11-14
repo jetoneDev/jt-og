@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6954f14c07e242dd9ae640e93dccb91f" Name="Diagram1" ZoomLevel="92" >
+        <EntityTypeShape EntityType="Model1.System" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="Model1.Department" Width="1.5" PointX="0.5" PointY="3.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="Model1.Resource" Width="2.375" PointX="5.375" PointY="6.875" />
+        <EntityTypeShape EntityType="Model1.Account" Width="1.5" PointX="1.5" PointY="7.5" />
+        <EntityTypeShape EntityType="Model1.Company" Width="1.5" PointX="0.625" PointY="4.375" />
+        <EntityTypeShape EntityType="Model1.MenuUrl" Width="2" PointX="9.625" PointY="5.25" />
+        <EntityTypeShape EntityType="Model1.GroupMember" Width="1.5" PointX="3.625" PointY="9.25" />
+        <AssociationConnector Association="Model1.System组" />
+        <AssociationConnector Association="Model1.公司组织架构" />
+        <AssociationConnector Association="Model1.公司组" />
+        <AssociationConnector Association="Model1.组部门人员" />
+        <AssociationConnector Association="Model1.公司人" />
+        <AssociationConnector Association="Model1.人部门人员" />
+        <EntityTypeShape EntityType="Model1.Auth" Width="2" PointX="12.625" PointY="5" />
+        <AssociationConnector Association="Model1.SystemOperationAuthority" />
+        <EntityTypeShape EntityType="Model1.SysCompany" Width="1.5" PointX="2.375" PointY="3.5" IsExpanded="false" />
+        <AssociationConnector Association="Model1.CompanySysCompany" />
+        <AssociationConnector Association="Model1.SystemSysCompany" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
